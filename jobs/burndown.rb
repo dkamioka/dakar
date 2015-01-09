@@ -12,4 +12,5 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
 
 
   send_event('burndown_evaluations', series: j["series"])
+  send_event('evaluations_done', { value: j["series"][1]["data"].last["y"].to_i / 4000})
 end
