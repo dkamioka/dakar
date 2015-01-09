@@ -9,8 +9,9 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
 
   # Convert to JSON
   j = JSON[response.body]
-
-
+  percentage = (j["series"][1]["data"].last["y"].to_i / 4000) * 100
+  puts percentage
+  
   send_event('burndown_evaluations', series: j["series"])
-  send_event('evaluations_done', { value: (j["series"][1]["data"].last["y"].to_i / 4000) * 100})
+  send_event('evaluations_done', { value: percentage})
 end
