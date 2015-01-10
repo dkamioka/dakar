@@ -15,6 +15,6 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
   j = JSON[response.body]
   percentage = (j["response"]["series"][1]["data"].last["y"].to_f / 500) * 100
 
-  send_event('burndown_evaluations', series: j["series"])
+  send_event('burndown_evaluations', series: j["response"]["series"])
   send_event('evaluations_done', { value: percentage })
 end
