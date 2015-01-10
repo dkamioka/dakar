@@ -1,5 +1,7 @@
+current_evaluations = 0
 # :first_in sets how long it takes before the job is first run. In this case, it is run immediately
 SCHEDULER.every '30s', :first_in => 0 do |job|
+  last_evaluations = current_evaluations  
   print "Extracting series data and constructing widget event message...\n"
   # points = [{x:1, y:4}, {x:2, y:27}, {x:3, y:6}]
   # send_event('burndown', points: points)
@@ -15,6 +17,16 @@ SCHEDULER.every '30s', :first_in => 0 do |job|
   j = JSON[response.body]
   percentage = (j["response"]["series"][1]["data"].last["y"].to_f / 500) * 100
 
+
+  url = URI.parse("http://ninenine-stats.herokuapp.com/total_evaluations")
+  http = Net::HTTP.new(url.host, url.port)
+  response = http.request(Net::HTTP::Get.new(url.request_uri))
+
+  # Convert to JSON
+  j = JSON[response.body]
+  current_evaluations = j["value"].to_i
+
   send_event('burndown_evaluations', series: j["response"]["series"])
   send_event('evaluations_done', { value: percentage })
+  send_event('total_evaluations',  { current: current_evaluations, last: last_evaluations })
 end
