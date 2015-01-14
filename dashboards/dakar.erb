@@ -1,16 +1,25 @@
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+    <!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-view="Countdown" data-title="DEADLINE" data-end="31-Jan-2015 18:00:00"></div>
-    </li>
+    </li> -->
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="total_evaluations" data-view="Number" data-title="Total de Avaliações"></div>
+    </li>    
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="burndown_evaluations" data-view="Rickshawgraph" data-title="BurnUp Chart" data-renderer="line" data-legend="true" data-summary-method="last"></div>
+      <div data-id="burndown_evaluations" data-view="Rickshawgraph" data-title="Avaliações no mês" data-renderer="line" data-legend="true"></div>
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="evaluations_done" data-view="Meter" data-title="Avaliações Meta" data-min="0" data-max="100" data-suffix="%"></div>
     </li>    
     <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="total_evaluations" data-view="Number" data-title="Total de Avaliações"></div>
+      <div data-id="total_opportunities" data-view="Number" data-title="Total de Oportunidades"></div>
     </li>    
+    <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="burnup_opportunities" data-view="Rickshawgraph" data-title="Oportunidades no mês" data-renderer="line" data-legend="true"></div>
+    </li>
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="opportunities_done" data-view="Meter" data-title="Oportunidades Meta" data-min="0" data-max="100" data-suffix="%"></div>
+    </li>        
   </ul>  
 </div>
